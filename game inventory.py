@@ -1,4 +1,4 @@
-import csv
+import csv, os
 # iterate the things what we will work in the program
 
 inv = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}
@@ -70,8 +70,16 @@ def import_inventory(inventory, filename):
     add_to_inventory(inv, csvItem)
     print_table(inv, desc)
 
+#import_inventory(inv,"/home/gergo/Desktop/kész python/game_inventory/importinventory.csv")
 
+def export_inventory(inventory, filename):
+    exportlist = []
+    for i in range(len(inv.items())):
+                exportlist.append(list(inv.keys())[i])
+                exportlist.append(list(inv.values())[i])
 
+    with open(filename,"w", newline='') as f:
+        thewriter = csv.writer(f)
+        thewriter.writerow(exportlist)
 
-
-import_inventory(inv,"/home/gergo/Desktop/kész python/game_inventory/importinventory.csv")
+#export_inventory(inv,"/home/gergo/Desktop/kész python/game_inventory/exportinventory.csv")
