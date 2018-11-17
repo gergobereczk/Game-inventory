@@ -1,3 +1,4 @@
+import csv
 # iterate the things what we will work in the program
 
 inv = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}
@@ -27,7 +28,7 @@ inv == add_to_inventory(inv, dragon_loot)
 
 desc = True
 asc = False
-def print_table(inventory,order):
+def print_table(inventory, order):
     # find the len of longest string:
     longest_list = []
     for i in range(len(inventory)):
@@ -60,3 +61,17 @@ def print_table(inventory,order):
     print("Total number of items:", TotalNumberOfItems)
 
 #print_table(inv,asc)
+def import_inventory(inventory, filename):
+    o = open(filename)
+    csv_o = csv.reader(o)
+    iDontKnow = 0
+    for csvItem in csv_o:
+        iDontKnow += 1
+    add_to_inventory(inv, csvItem)
+    print_table(inv, desc)
+
+
+
+
+
+import_inventory(inv,"/home/gergo/Desktop/kész python/game_inventory/importinventory.csv")
