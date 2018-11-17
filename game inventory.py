@@ -25,7 +25,9 @@ def add_to_inventory(inventory, added_items):
 
 inv == add_to_inventory(inv, dragon_loot)
 
-def print_table(inventory):
+desc = True
+asc = False
+def print_table(inventory,order):
     # find the len of longest string:
     longest_list = []
     for i in range(len(inventory)):
@@ -38,8 +40,7 @@ def print_table(inventory):
     for number in range(len(inventory.items())):
         dictToList.append([list(inventory.values())[number], list(inventory.keys())[number]])
 
-    desc = (sorted(dictToList, reverse=True))
-    asc = (sorted(dictToList, reverse=False))  
+    desc_asc = (sorted(dictToList, reverse= order))
     # print the table (upside)
     item = "item"
     print(
@@ -50,41 +51,12 @@ def print_table(inventory):
     TotalNumberOfItems = 0
     # print the table (center)
     for number2 in range(len(inventory)):
-        stringConvert = str(desc[number2][0])
-        stringConvert2 = str(desc[number2][1])
+        stringConvert = str(desc_asc[number2][0])
+        stringConvert2 = str(desc_asc[number2][1])
         print(stringConvert.rjust(6), stringConvert2.rjust(longest_string + 2))
-        TotalNumberOfItems += desc[number2][0]
+        TotalNumberOfItems += desc_asc[number2][0]
     # print the table (downside)
     print("-"*(longest_string+9))
     print("Total number of items:", TotalNumberOfItems)
 
- 
-
-
-
-
-
-
-    # table_line = 20
-    # print(
-    # "Inventory:\n",
-    # "count   item name\n",
-    # "-"*table_line,
-    # )
-    # sumInvValues = 0        #iterate total inventory vale to 0 for sum
-    # for key, value in inventory.items(): 
-    #     sumInvValues += value
-    #     print(value, key)       # collect and after print the elements of the "inv" dictionary.
-    # print("-"*table_line)
-    # print("Total number of items:", (sumInvValues))      # print total inventory values
-    # #print('{:_<40}'.format('test'))
-
-
-# display_inventory(inv)
-print_table(inv)
-# print right justified test
-# test_right = 11
-# test_lyrics = "test lyrics"
-# len_testlyrics = (len(test_lyrics))*2
-# print ("test lyrics")
-# print ("test lyrics".rjust(len_testlyrics))
+#print_table(inv,asc)
